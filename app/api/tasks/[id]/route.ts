@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth"
 import clientPromise from "@/lib/mongodb"
 import { ObjectId } from "mongodb"
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -12,9 +12,10 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { id } = await params
     const { title, description, priority, dueDate, category, completed } = await request.json()
 
-    if (!ObjectId.isValid(params.id)) {
+    if (!ObjectId.isValid(id)) {
       return NextResponse.json({ error: "Invalid task ID" }, { status: 400 })
     }
 
@@ -34,7 +35,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     const result = await tasks.updateOne(
       {
-        _id: new ObjectId(params.id),
+        _id: new ObjectId(id),
         userId: session.user.id,
       },
       { $set: updateData },
@@ -44,7 +45,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       return NextResponse.json({ error: "Task not found" }, { status: 404 })
     }
 
-    const updatedTask = await tasks.findOne({ _id: new ObjectId(params.id) })
+    const updatedTask = await tasks.findOne({ _id: new ObjectId(id) })
 
     return NextResponse.json(updatedTask)
   } catch (error) {
@@ -53,7 +54,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -61,7 +62,9 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    if (!ObjectId.isValid(params.id)) {
+    const { id } = await params
+
+    if (!ObjectId.isValid(id)) {
       return NextResponse.json({ error: "Invalid task ID" }, { status: 400 })
     }
 
@@ -69,7 +72,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     const tasks = client.db().collection("tasks")
 
     const result = await tasks.deleteOne({
-      _id: new ObjectId(params.id),
+      _id: new ObjectId(id),
       userId: session.user.id,
     })
 
