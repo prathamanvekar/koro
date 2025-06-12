@@ -5,34 +5,9 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI
+const options = {}
 
-// Enhanced options for production deployment
-const options = {
-  // SSL/TLS Configuration
-  tls: true,
-  tlsAllowInvalidCertificates: false,
-  tlsAllowInvalidHostnames: false,
-
-  // Connection pool settings
-  maxPoolSize: 10,
-  minPoolSize: 5,
-  maxIdleTimeMS: 30000,
-
-  // Timeout settings
-  serverSelectionTimeoutMS: 5000,
-  socketTimeoutMS: 45000,
-  connectTimeoutMS: 10000,
-
-  // Retry settings
-  retryWrites: true,
-  retryReads: true,
-
-  // Additional options for stability
-  heartbeatFrequencyMS: 10000,
-  bufferMaxEntries: 0,
-}
-
-let client: MongoClient
+let client
 let clientPromise: Promise<MongoClient>
 
 if (process.env.NODE_ENV === "development") {
