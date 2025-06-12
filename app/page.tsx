@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import check from "../public/images/checked.png";
+import { Navigation } from "./components/ui/Navbar";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -137,7 +138,8 @@ export default function HomePage() {
 
       {!isLoading && (
         <>
-          {/* Navigation */}
+        <Navigation />
+          {/* Navigation
           <motion.nav
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -225,7 +227,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-          </motion.nav>
+          </motion.nav> */}
 
           {/* Hero Section */}
           <motion.section

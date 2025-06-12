@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { Check, X, ArrowRight, Sparkles, Gift, Zap, Coffee } from "lucide-react"
 import check from "@/public/images/checked.png"
+import { Navigation } from "../components/ui/Navbar"
 
 export default function PricingPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -88,7 +89,8 @@ export default function PricingPage() {
         }}
       />
 
-      {/* Navigation */}
+      <Navigation />
+      {/* Navigation
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -152,7 +154,7 @@ export default function PricingPage() {
             </Link>
           </div>
         </div>
-      </motion.nav>
+      </motion.nav> */}
 
       {/* Hero Section */}
       <motion.section

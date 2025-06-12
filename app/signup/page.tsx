@@ -11,6 +11,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
+import { Navigation } from "../components/ui/Navbar";
 
 export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -103,7 +104,7 @@ export default function SignUpPage() {
         }}
       />
 
-      {/* Navigation */}
+      {/* Navigation
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -141,8 +142,8 @@ export default function SignUpPage() {
             </Link>
           </div>
         </div>
-      </motion.nav>
-
+      </motion.nav> */}
+      <Navigation />
       {/* Main Content */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}

@@ -9,6 +9,7 @@ import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { Navigation } from "../components/ui/Navbar"
 
 export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -95,7 +96,7 @@ export default function SignInPage() {
         }}
       />
 
-      {/* Navigation */}
+      {/* Navigation
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -134,7 +135,8 @@ export default function SignInPage() {
             </Link>
           </div>
         </div>
-      </motion.nav>
+      </motion.nav> */}
+      <Navigation />
 
       {/* Main Content */}
       <motion.div

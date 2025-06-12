@@ -1,22 +1,32 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { ArrowLeft, Code, BookOpen, Rocket, Coffee, Github, Linkedin, Mail } from "lucide-react"
-import check from "@/public/images/checked.png"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  Code,
+  BookOpen,
+  Rocket,
+  Coffee,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
+import check from "@/public/images/checked.png";
+import { Navigation } from "../components/ui/Navbar";
 
 export default function AboutPage() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const skills = [
     { name: "React & Next.js", level: 85, color: "from-blue-500 to-cyan-500" },
@@ -24,7 +34,7 @@ export default function AboutPage() {
     { name: "Node.js", level: 75, color: "from-green-500 to-teal-500" },
     { name: "MongoDB", level: 70, color: "from-orange-500 to-red-500" },
     { name: "UI/UX Design", level: 65, color: "from-indigo-500 to-purple-500" },
-  ]
+  ];
 
   const projects = [
     {
@@ -45,17 +55,25 @@ export default function AboutPage() {
       tech: ["Python", "Grok API", "Streamlit"],
       status: "Completed",
     },
-  ]
+  ];
 
-const learningGoals = [
-    { icon: <Code size={24} />, title: "Full-Stack Mastery", desc: "Becoming proficient in end-to-end development" },
-    { icon: <Rocket size={24} />, title: "Modern Frameworks", desc: "Exploring cutting-edge technologies and tools" },
+  const learningGoals = [
     {
-        icon: <Code size={24} />,
-        title: "DSA & LeetCode",
-        desc: "Solved 100+ problems to strengthen my data structures and algorithms skills",
+      icon: <Code size={24} />,
+      title: "Full-Stack Mastery",
+      desc: "Becoming proficient in end-to-end development",
     },
-]
+    {
+      icon: <Rocket size={24} />,
+      title: "Modern Frameworks",
+      desc: "Exploring cutting-edge technologies and tools",
+    },
+    {
+      icon: <Code size={24} />,
+      title: "DSA & LeetCode",
+      desc: "Solved 100+ problems to strengthen my data structures and algorithms skills",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
@@ -98,7 +116,7 @@ const learningGoals = [
         }}
       />
 
-      {/* Navigation */}
+      {/* Navigation
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -162,8 +180,8 @@ const learningGoals = [
             </Link>
           </div>
         </div>
-      </motion.nav>
-
+      </motion.nav> */}
+      <Navigation />
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0 }}
@@ -219,8 +237,8 @@ const learningGoals = [
             transition={{ duration: 0.8, delay: 1 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            A passionate developer on a journey to master full-stack development by building real-world projects like
-            koro.
+            A passionate developer on a journey to master full-stack development
+            by building real-world projects like koro.
           </motion.p>
 
           <motion.div
@@ -257,7 +275,11 @@ const learningGoals = [
             {[
               { icon: <Github size={20} />, href: "#", label: "GitHub" },
               { icon: <Linkedin size={20} />, href: "#", label: "LinkedIn" },
-              { icon: <Mail size={20} />, href: "mailto:prathamesh@example.com", label: "Email" },
+              {
+                icon: <Mail size={20} />,
+                href: "mailto:prathamesh@example.com",
+                label: "Email",
+              },
             ].map((social, index) => (
               <motion.a
                 key={social.label}
@@ -303,13 +325,19 @@ const learningGoals = [
             className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-12"
           >
             <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                I'm a student and aspiring full-stack developer who learns by building real-world apps, not just following tutorials. I love solving practical problems through code.
+              I'm a student and aspiring full-stack developer who learns by
+              building real-world apps, not just following tutorials. I love
+              solving practical problems through code.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                koro is my passion project, built with Next.js, MongoDB, NextAuth, and Framer Motion. Every feature comes from hands-on research and experimentation.
+              koro is my passion project, built with Next.js, MongoDB, NextAuth,
+              and Framer Motion. Every feature comes from hands-on research and
+              experimentation.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-                Alongside building projects, I regularly practice DSA and LeetCode to sharpen my problem-solving skills and aim to become a well-rounded developer.
+              Alongside building projects, I regularly practice DSA and LeetCode
+              to sharpen my problem-solving skills and aim to become a
+              well-rounded developer.
             </p>
           </motion.div>
         </div>
@@ -410,15 +438,17 @@ const learningGoals = [
                       project.status === "Completed"
                         ? "bg-green-500/20 text-green-400"
                         : project.status === "In Progress"
-                          ? "bg-blue-500/20 text-blue-400"
-                          : "bg-orange-500/20 text-orange-400"
+                        ? "bg-blue-500/20 text-blue-400"
+                        : "bg-orange-500/20 text-orange-400"
                     }`}
                   >
                     {project.status}
                   </span>
                 </div>
 
-                <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                <p className="text-gray-400 text-sm mb-4">
+                  {project.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
@@ -486,8 +516,12 @@ const learningGoals = [
                   {goal.icon}
                 </motion.div>
 
-                <h3 className="text-2xl font-bold mb-4 relative z-10">{goal.title}</h3>
-                <p className="text-gray-400 text-lg relative z-10">{goal.desc}</p>
+                <h3 className="text-2xl font-bold mb-4 relative z-10">
+                  {goal.title}
+                </h3>
+                <p className="text-gray-400 text-lg relative z-10">
+                  {goal.desc}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -531,7 +565,8 @@ const learningGoals = [
           viewport={{ once: true }}
           className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto relative z-10"
         >
-          I'm always excited to connect with fellow developers, share knowledge, and learn from the community.
+          I'm always excited to connect with fellow developers, share knowledge,
+          and learn from the community.
         </motion.p>
 
         <motion.div
@@ -589,9 +624,11 @@ const learningGoals = [
           >
             koro
           </motion.div>
-          <p className="text-gray-400">© 2024 koro. Built with ❤️ by Prathamesh Anvekar</p>
+          <p className="text-gray-400">
+            © 2024 koro. Built with ❤️ by Prathamesh Anvekar
+          </p>
         </div>
       </motion.footer>
     </div>
-  )
+  );
 }
