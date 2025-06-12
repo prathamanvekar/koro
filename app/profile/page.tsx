@@ -365,7 +365,7 @@ export default function ProfilePage() {
                   <label className="block text-sm font-medium mb-2">
                     Password
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex sm:flex-row flex-col items-center gap-3">
                     <input
                       type="password"
                       value="••••••••••••"
